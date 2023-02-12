@@ -20,6 +20,7 @@ class CO2Sensor():
     response = self.serial.read(9)
     if len(response) == 9:
       current_time = time.strftime('%H:%M:%S', time.localtime())
+      response = bytearray(response)
       return {"time": current_time, "ppa": (response[2] << 8) | response[3], "temp": response[4]}
     return -1
 
